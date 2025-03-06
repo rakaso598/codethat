@@ -22,7 +22,6 @@ function Main() {
             ></Route>
           </Route>
           <Route path="wishlist" element={<WishListPage />} />
-
           <Route path="questions">
             <Route index element={<QuestionListPage />} />
             <Route path=":questionId" element={<QuestionPage />} />

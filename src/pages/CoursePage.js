@@ -1,14 +1,19 @@
-import { addWishlist, getCourseBySlug } from '../api';
-import Button from '../components/Button';
-import Container from '../components/Container';
-import Card from '../components/Card';
-import CourseIcon from '../components/CourseIcon';
-import getCourseColor from '../utils/getCourseColor';
-import styles from './CoursePage.module.css';
+import { addWishlist, getCourseBySlug } from "../api";
+import Button from "../components/Button";
+import Container from "../components/Container";
+import Card from "../components/Card";
+import CourseIcon from "../components/CourseIcon";
+import getCourseColor from "../utils/getCourseColor";
+import styles from "./CoursePage.module.css";
+import { Navigate } from "react-router-dom";
 
 function CoursePage() {
-  const course = getCourseBySlug('react-frontend-development');
+  const course = getCourseBySlug("react-frontend-development");
   const courseColor = getCourseColor(course?.code);
+
+  if (!course) {
+    return <Navigate to="/courses"></Navigate>;
+  }
 
   const headerStyle = {
     borderTopColor: courseColor,

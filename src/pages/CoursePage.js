@@ -5,12 +5,14 @@ import Card from "../components/Card";
 import CourseIcon from "../components/CourseIcon";
 import getCourseColor from "../utils/getCourseColor";
 import styles from "./CoursePage.module.css";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function CoursePage() {
+  const navigate = useNavigate();
   const course = getCourseBySlug("react-frontend-development");
   const courseColor = getCourseColor(course?.code);
 
+  // 렌더링 시점에 페이지 이동, 왜냐? 얘가 if에 안걸리면 얘 말고 다른 밑에가 리턴되겠지. 얘에 걸리면 얘 컴포넌트를 반환하는 특정 조건
   if (!course) {
     return <Navigate to="/courses"></Navigate>;
   }
@@ -21,6 +23,7 @@ function CoursePage() {
 
   const handleAddWishlistClick = () => {
     addWishlist(course?.slug);
+    navigate("/wishlist");
   };
 
   return (

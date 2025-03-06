@@ -1,15 +1,19 @@
-import { useState } from 'react';
-import ListPage from '../components/ListPage';
-import Warn from '../components/Warn';
-import CourseItem from '../components/CourseItem';
-import { getCourses } from '../api';
-import styles from './CourseListPage.module.css';
-import searchBarStyles from '../components/SearchBar.module.css';
-import searchIcon from '../assets/search.svg';
+import { useState } from "react";
+import ListPage from "../components/ListPage";
+import Warn from "../components/Warn";
+import CourseItem from "../components/CourseItem";
+import { getCourses } from "../api";
+import styles from "./CourseListPage.module.css";
+import searchBarStyles from "../components/SearchBar.module.css";
+import searchIcon from "../assets/search.svg";
+import { useSearchParams } from "react-router-dom";
 
+// path의 파라미터 useParams
+// query String은 useSearchParams
 function CourseListPage() {
-  const [keyword, setKeyword] = useState('');
-  const courses = getCourses();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [keyword, setKeyword] = useState("");
+  const courses = getCourses(searchParams.get("keyword"));
 
   const handleKeywordChange = (e) => setKeyword(e.target.value);
 

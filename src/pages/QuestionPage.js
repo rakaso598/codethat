@@ -10,8 +10,8 @@ import styles from "./QuestionPage.module.css";
 import { useParams } from "react-router-dom";
 
 function QuestionPage() {
-  const { id } = useParams();
-  const question = getQuestionById(id);
+  const { questionId } = useParams();
+  const question = getQuestionById(questionId);
 
   return (
     <>
